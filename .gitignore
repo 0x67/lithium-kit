@@ -8,8 +8,11 @@ node_modules
 .idea/
 *.log
 cypress/downloads
-public/assets/fonts
 
-src/auto-imports.d.ts
-src/components.d.ts
-src/typed-router.d.ts
+.env
+
+/src/auto-imports.d.ts
+/src/components.d.ts
+/src/typed-router.d.ts
+*storybook.log
+./vite-config.ts.timestamp*
