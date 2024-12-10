@@ -25,7 +25,7 @@ const { t } = useI18n()
       </a>
     </p>
     <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
+      <em class="text-sm opacity-75">{{ t('intro.desc') }}</em>
     </p>
 
     <div py-4 />
@@ -40,7 +40,7 @@ const { t } = useI18n()
 
     <div>
       <button
-        btn m-3 text-sm
+        text-sm btn m-3
         :disabled="!name"
         @click="go"
       >
