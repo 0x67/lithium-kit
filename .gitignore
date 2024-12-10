@@ -10,6 +10,6 @@ node_modules
 cypress/downloads
 public/assets/fonts
 
-src/auto-imports.d/ts
+src/auto-imports.d.ts
 src/components.d.ts
 src/typed-router.d.ts
