@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     'storybook-addon-rem-v8',
+    '@storybook/addon-mdx-gfm',
   ],
   framework: {
     name: '@storybook/vue3-vite',
@@ -16,5 +17,6 @@ const config: StorybookConfig = {
   typescript: {
     check: true,
   },
+  docs: {},
 }
 export default config
