@@ -1,12 +1,17 @@
 import {
   type ConfigBase,
   presetIcons,
+  presetTypography,
   presetUno,
   presetWind,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-
+// import { createLocalFontProcessor } from 'unocss/preset-web-fonts/src/processor'
+import {
+  presetApplet,
+  presetRemRpx,
+} from 'unocss-applet'
 import { presetAnimations } from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
 
@@ -31,12 +36,14 @@ export const lithiumPresets: ConfigBase['presets'] = [
   presetIcons(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
-  // presetApplet(),
+  presetApplet(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
-  // presetRemRpx(),
+  presetRemRpx({
+    mode: 'rpx2rem',
+  }),
   // presetWeapp(),
-  // presetTypography(),
+  presetTypography(),
   // presetWebFonts({
   //   fonts: {
   //     sans: 'DM Sans',

@@ -3,7 +3,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 export { default as Button } from './UiButton.vue'
 
 export const buttonVariants = cva(
-  `center flex-grow-0 flex-shrink-0 whitespace-nowrap rounded-[9999px]
+  `center flex-grow-0 flex-shrink-0 whitespace-nowrap rounded-full
    cursor-pointer border-0 transition duration-300 ease-in-out 
   text-primary-raisin font-600 text-md line-height-md disabled:(text-primary-gray-400 bg-primary-gray-50 cursor-not-allowed)
   `,
@@ -18,8 +18,8 @@ export const buttonVariants = cva(
         danger: ` bg-primary-red-400 text-white hover:(bg-primary-red-500)`,
       },
       size: {
-        primary: 'w-320px h-48px px24px py12px',
-        small: 'w-160px h-36px px-12px py-6px',
+        primary: 'w-720rpx h-96rpx px-48rpx py-24rpx',
+        small: 'w-320rpx h-72rpx px-24rpx py-12rpx',
       },
 
     },

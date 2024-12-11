@@ -16,6 +16,7 @@ import Shiki from '@shikijs/markdown-it'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import ViteRestart from 'vite-plugin-restart'
 
 const fullReloadAlways: PluginOption = {
   name: 'full-reload-always',
@@ -142,6 +143,9 @@ export default defineConfig({
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     VueDevTools(),
+    ViteRestart({
+      restart: ['vite.config.ts', 'uno.config.ts'],
+    }),
     fullReloadAlways,
   ],
 
@@ -162,7 +166,17 @@ export default defineConfig({
       generateSitemap()
     },
   },
-
+  server: {
+    hmr: true,
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api'],
+      },
+    },
+  },
   ssr: {
     // TODO: workaround until they support native ESM
     noExternal: ['workbox-window'],
