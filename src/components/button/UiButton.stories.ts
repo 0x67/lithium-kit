@@ -25,6 +25,7 @@ const meta = {
   },
   args: {
     disabled: false,
+    as: 'button',
   },
 
 } satisfies Meta<typeof UiButton>
@@ -38,6 +39,29 @@ export const Primary: Story = {
     variant: 'primary',
     size: 'primary',
     label: 'Button',
-    disabled: false,
+  },
+}
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    size: 'primary',
+    label: 'Button',
+  },
+}
+
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    size: 'primary',
+    label: 'Button',
+  },
+}
+
+export const Ghost: Story = {
+  args: {
+    variant: 'ghost',
+    size: 'primary',
+    label: 'Button',
   },
 }

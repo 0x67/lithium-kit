@@ -5,7 +5,8 @@ export { default as Button } from './UiButton.vue'
 export const buttonVariants = cva(
   `center flex-grow-0 flex-shrink-0 whitespace-nowrap rounded-full
    cursor-pointer border-0 transition duration-300 ease-in-out 
-  text-primary-raisin font-600 text-md line-height-md disabled:(text-primary-gray-400 bg-primary-gray-50 cursor-not-allowed)
+  text-primary-raisin font-600 text-md line-height-md 
+  disabled:(text-primary-gray-400 bg-primary-gray-50 cursor-not-allowed)
   `,
   {
     variants: {
@@ -13,7 +14,7 @@ export const buttonVariants = cva(
         primary:
           `bg-primary-yellow-400 hover:(bg-primary-yellow-700)`,
         secondary:
-          `bg-white hover:(bg-primary-yellow-50) border-3rpx !border-primary-yellow-400 !disabled:(border-none)`,
+          `bg-white hover:(bg-primary-yellow-50) border-3rpx border-primary-yellow-400 disabled:(border-none)`,
         ghost: `bg-transparent text-primary-gray-600  hover:(bg-primary-gray-50)`,
         danger: ` bg-primary-red-400 text-white hover:(bg-primary-red-500)`,
       },

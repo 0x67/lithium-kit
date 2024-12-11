@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import type { PrimitiveProps } from 'radix-vue'
+import type { AsTag, PrimitiveProps } from 'radix-vue'
 import { Primitive } from 'radix-vue'
 import {
   type ButtonVariants,
@@ -21,6 +21,8 @@ interface ButtonProps extends PrimitiveProps {
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
   label: string
+  /** DON'T CHANGE IN STORYBOOK */
+  as?: AsTag | Component
 }
 
 type Props = ButtonProps & IconProps
