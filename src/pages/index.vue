@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <div class="center">
-    <h1>Hello</h1>
+  <div class="">
+    <ui-button label="Button" />
   </div>
 </template>
 

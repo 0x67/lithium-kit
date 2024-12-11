@@ -1,23 +1,13 @@
 import {
-  createLocalFontProcessor,
-} from '@unocss/preset-web-fonts/local'
-import {
   type ConfigBase,
-  presetAttributify,
   presetIcons,
-  presetTypography,
   presetUno,
-  presetWebFonts,
   presetWind,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-// import {
-//   presetApplet,
-//   presetRemRpx,
-//   transformerAttributify,
-// } from 'unocss-applet'
-// import { presetAnimations } from 'unocss-preset-animations'
+
+import { presetAnimations } from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
 
 // // eslint-disable-next-line ts/ban-ts-comment
@@ -39,23 +29,33 @@ export const lithiumPresets: ConfigBase['presets'] = [
   presetUno(),
   presetWind(),
   presetIcons(),
-  // presetApplet(),
-  // presetRemRpx(),
-  presetTypography(),
-  presetWebFonts({
-    // fonts: {
-    //   sans: 'DM Sans',
-    //   serif: 'DM Serif Display',
-    //   mono: 'DM Mono',
-    // },
-    processors: createLocalFontProcessor(),
-  }),
-  presetAttributify(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
-  // presetAnimations({}),
+  // presetApplet(),
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore
+  // presetRemRpx(),
+  // presetWeapp(),
+  // presetTypography(),
+  // presetWebFonts({
+  //   fonts: {
+  //     sans: 'DM Sans',
+  //     serif: 'DM Serif Display',
+  //     mono: 'DM Mono',
+  //   },
+  //   processors: createLocalFontProcessor(),
+  // }),
+  // presetAttributify(),
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore
+  presetAnimations(),
   // presetTailwindMotion({}),
-  presetShadcn({}),
+  presetShadcn(),
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore
+  // presetRpxToPx({
+  //   conversionFactor: 2, // Divide `rpx` values by 2 to get `px`
+  // }),
 ]
 
 export const lithiumPreflights: ConfigBase['preflights'] = [
@@ -73,6 +73,8 @@ export const lithiumPreflights: ConfigBase['preflights'] = [
     `,
   },
 ]
+
+//
 
 export const lithiumThemes: ConfigBase['theme'] = {
   // ref: https://www.figma.com/design/UYIpU2RqNhptJmOT7bUJe8/Lithium-Kit-1.0?node-id=2-75
@@ -252,15 +254,20 @@ export const lithiumTransformers: ConfigBase['transformers'] = [
   // transformerAttributify({ ignoreAttributes: ['block'], deleteAttributes: false }),
 ]
 
-export const lithiumRules: ConfigBase['rules'] = [[
-  'p-safe',
-  {
-    padding: 'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
-  },
-], ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }], ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }], [
-  'lining-tabular-nums',
-  { 'font-variant-numeric': 'lining-nums tabular-nums' },
-]]
+export const lithiumRules: ConfigBase['rules'] = [
+  [
+    'p-safe',
+    {
+      padding: 'env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
+    },
+  ],
+  ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
+  ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
+  [
+    'lining-tabular-nums',
+    { 'font-variant-numeric': 'lining-nums tabular-nums' },
+  ],
+]
 
 export const lithiumConfig: ConfigBase = {
   content: lithiumContents,
