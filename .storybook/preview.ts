@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/vue3'
-import 'virtual:uno.css'
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
+import './preview.css'
 
 const preview: Preview = {
   parameters: {

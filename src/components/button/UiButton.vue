@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import type { AsTag, PrimitiveProps } from 'radix-vue'
 import { Primitive } from 'radix-vue'
 import {
   type ButtonVariants,
@@ -13,7 +12,7 @@ export interface IconProps {
   // placement?: 'left' | 'right'
 }
 
-interface ButtonProps extends PrimitiveProps {
+interface ButtonProps {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
   class?: HTMLAttributes['class']
@@ -21,21 +20,21 @@ interface ButtonProps extends PrimitiveProps {
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
   label: string
-  /** DON'T CHANGE IN STORYBOOK */
-  as?: AsTag | Component
+  /**
+   *  DON'T CHANGE IN STORYBOOK
+   */
+  asChild?: boolean
 }
 
-type Props = ButtonProps & IconProps
-
-withDefaults(defineProps<Props>(), {
-  as: 'button',
+withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
+  type: 'button',
 })
 </script>
 
 <template>
   <Primitive
-    :as="as"
+    as="button"
     :as-child="asChild"
     :disabled="disabled"
     :type="type"

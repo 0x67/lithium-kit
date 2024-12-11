@@ -3,7 +3,7 @@
 
 <template>
   <div class="">
-    <ui-button label="Button" />
+    <ui-button label="Button" variant="secondary" />
   </div>
 </template>
 

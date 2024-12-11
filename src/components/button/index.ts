@@ -14,7 +14,7 @@ export const buttonVariants = cva(
         primary:
           `bg-primary-yellow-400 hover:(bg-primary-yellow-700)`,
         secondary:
-          `bg-white hover:(bg-primary-yellow-50) border-3rpx border-primary-yellow-400 disabled:(border-none)`,
+          `bg-white hover:(bg-primary-yellow-50) outline-none border border-3rpx border-primary-yellow-400 disabled:(border-none)`,
         ghost: `bg-transparent text-primary-gray-600  hover:(bg-primary-gray-50)`,
         danger: ` bg-primary-red-400 text-white hover:(bg-primary-red-500)`,
       },
@@ -32,3 +32,5 @@ export const buttonVariants = cva(
 )
 
 export type ButtonVariants = VariantProps<typeof buttonVariants>
+
+export type Variants = ButtonVariants['variant']

@@ -25,7 +25,6 @@ const meta = {
   },
   args: {
     disabled: false,
-    as: 'button',
   },
 
 } satisfies Meta<typeof UiButton>
