@@ -6,38 +6,33 @@
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9" />
     <meta name="msapplication-TileColor" content="#00aba9" />
-    <script>
+    <!-- <script>
       ;(function () {
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
         if (setting === 'dark' || (prefersDark && setting !== 'light'))
           document.documentElement.classList.toggle('light', true)
       })()
-    </script>
-    <script>
-      // Average ratio based on the provided data points between 375px and 960px
-      const averageRatio = 0.0427 // Calculated average ratio from the data points
+    </script> -->
 
-      // Function to calculate and set the font-size based on screen width
+    <!-- Script to use rem styling -->
+    <script>
+      const averageRatio = 0.0427
+
       function setResponsiveFontSize() {
         const screenWidth = window.innerWidth
         let fontSize = 16
 
-        // Apply ratio for screens below 375px and between 375px and 960px
         if (screenWidth > 375 && screenWidth <= 960) {
           fontSize = screenWidth * averageRatio // Apply average ratio for screens 375px and above
         } else if (screenWidth <= 375) {
           fontSize = screenWidth * averageRatio // Dynamically resize for screens smaller than 375px
         }
 
-        // Apply the calculated font-size to the root element
         document.documentElement.style.fontSize = `${fontSize}px`
       }
 
-      // Set font size on load
       setResponsiveFontSize()
-
-      // Update font size on resize
       window.addEventListener('resize', setResponsiveFontSize)
     </script>
   </head>

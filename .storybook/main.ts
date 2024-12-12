@@ -8,7 +8,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     'storybook-addon-rem-v8',
-    '@storybook/addon-mdx-gfm',
+    '@storybook/addon-a11y',
   ],
   staticDirs: ['../public'],
   framework: {

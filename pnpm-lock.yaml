@@ -54,6 +54,9 @@ importers:
       '@shikijs/markdown-it':
         specifier: ^1.14.1
         version: 1.14.1
+      '@storybook/addon-a11y':
+        specifier: 8.4.7
+        version: 8.4.7(storybook@8.4.7(prettier@3.3.3))
       '@storybook/addon-essentials':
         specifier: ^8.4.7
         version: 8.4.7(@types/react@19.0.1)(storybook@8.4.7(prettier@3.3.3))
@@ -1528,6 +1531,11 @@ packages:
   '@shikijs/transformers@1.14.1':
     resolution: {integrity: sha512-JJqL8QBVCJh3L61jqqEXgFq1cTycwjcGj7aSmqOEsbxnETM9hRlaB74QuXvY/fVJNjbNt8nvWo0VwAXKvMSLRg==}
 
+  '@storybook/addon-a11y@8.4.7':
+    resolution: {integrity: sha512-GpUvXp6n25U1ZSv+hmDC+05BEqxWdlWjQTb/GaboRXZQeMBlze6zckpVb66spjmmtQAIISo0eZxX1+mGcVR7lA==}
+    peerDependencies:
+      storybook: ^8.4.7
+
   '@storybook/addon-actions@8.4.7':
     resolution: {integrity: sha512-mjtD5JxcPuW74T6h7nqMxWTvDneFtokg88p6kQ5OnC1M259iAXb//yiSZgu/quunMHPCXSiqn4FNOSgASTSbsA==}
     peerDependencies:
@@ -2590,6 +2598,10 @@ packages:
 
   aws4@1.12.0:
     resolution: {integrity: sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==}
+
+  axe-core@4.10.2:
+    resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
+    engines: {node: '>=4'}
 
   axios@1.4.0:
     resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
@@ -8100,6 +8112,12 @@ snapshots:
     dependencies:
       shiki: 1.14.1
 
+  '@storybook/addon-a11y@8.4.7(storybook@8.4.7(prettier@3.3.3))':
+    dependencies:
+      '@storybook/addon-highlight': 8.4.7(storybook@8.4.7(prettier@3.3.3))
+      axe-core: 4.10.2
+      storybook: 8.4.7(prettier@3.3.3)
+
   '@storybook/addon-actions@8.4.7(storybook@8.4.7(prettier@3.3.3))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -9565,6 +9583,8 @@ snapshots:
   aws-sign2@0.7.0: {}
 
   aws4@1.12.0: {}
+
+  axe-core@4.10.2: {}
 
   axios@1.4.0:
     dependencies:

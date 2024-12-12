@@ -1,5 +1,6 @@
 import {
   type ConfigBase,
+  presetAttributify,
   presetIcons,
   presetTypography,
   presetUno,
@@ -31,8 +32,12 @@ export const lithiumContents: ConfigBase['content'] = {
 }
 
 export const lithiumPresets: ConfigBase['presets'] = [
-  presetUno(),
-  presetWind(),
+  presetUno({
+    attributifyPseudo: true,
+  }),
+  presetWind({
+    attributifyPseudo: true,
+  }),
   presetIcons(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
@@ -52,7 +57,7 @@ export const lithiumPresets: ConfigBase['presets'] = [
   //   },
   //   processors: createLocalFontProcessor(),
   // }),
-  // presetAttributify(),
+  presetAttributify(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
   presetAnimations(),

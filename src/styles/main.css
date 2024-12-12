@@ -1,4 +1,9 @@
 @import './markdown.css';
+@import './fonts.css';
+
+* {
+  font-family: 'Inter';
+}
 
 html,
 body,
