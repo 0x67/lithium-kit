@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/vue3'
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import './preview.css'
+import './dynamic-font'
 
 const preview: Preview = {
   parameters: {
