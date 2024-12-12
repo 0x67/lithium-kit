@@ -1,5 +1,7 @@
 {
+  "name": "",
   "type": "module",
+  "version": "",
   "private": true,
   "packageManager": "pnpm@9.8.0",
   "scripts": {
@@ -17,8 +19,9 @@
     "postinstall": "npx simple-git-hooks",
     "sizecheck": "npx vite-bundle-visualizer",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
-    "storybook:preview": "serve storybook-static"
+    "build-storybook": "storybook build",
+    "storybook:preview": "serve storybook-static",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@unhead/vue": "^1.10.0",
@@ -51,6 +54,7 @@
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue-macros/volar": "^0.27.4",
     "@vue/test-utils": "^2.4.6",
+    "chromatic": "^11.20.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.24",

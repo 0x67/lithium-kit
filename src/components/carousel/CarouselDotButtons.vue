@@ -2,7 +2,9 @@
 import { useCarousel } from './useCarousel'
 import type { WithClassAsProps } from './interface'
 
-const props = defineProps<WithClassAsProps>()
+const props = defineProps<{
+  class?: WithClassAsProps['class']
+}>()
 const { scrollTo, selectedIndex, scrollSnaps, orientation } = useCarousel()
 </script>
 

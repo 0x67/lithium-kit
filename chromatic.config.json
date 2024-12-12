@@ -1,5 +1,8 @@
 {
   "onlyChanged": true,
+  "exitOnceUploaded": true,
+  "autoAcceptChanges": "main",
   "projectId": "Project:6758feb58186f645b26105d3",
-  "zip": true
+  "zip": true,
+  "externals": ["public/**"]
 }
