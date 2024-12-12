@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-
 import UiButton from './UiButton.vue'
 import type { ButtonVariants } from '@/components/button'
 
@@ -22,11 +21,13 @@ const meta = {
       'small',
     ] as ButtonVariants['size'][] },
     disabled: { control: 'boolean' },
+    onClick: {
+      action: 'click',
+    },
   },
   args: {
     disabled: false,
   },
-
 } satisfies Meta<typeof UiButton>
 
 export default meta

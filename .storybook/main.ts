@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     'storybook-addon-rem-v8',
     '@storybook/addon-mdx-gfm',
   ],
+  staticDirs: ['../public'],
   framework: {
     name: '@storybook/vue3-vite',
     options: {},
