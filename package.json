@@ -20,7 +20,7 @@
     "sizecheck": "npx vite-bundle-visualizer",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "storybook:preview": "serve storybook-static",
+    "storybook:preview": "npx http-server storybook-static",
     "chromatic": "npx chromatic"
   },
   "dependencies": {
