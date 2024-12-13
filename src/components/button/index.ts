@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 
-export { default as Button } from './UiButton.vue'
+export { default as UiButton } from './UiButton.vue'
 
 export const buttonVariants = cva(
   `center flex-grow-0 flex-shrink-0 whitespace-nowrap rounded-full
@@ -19,7 +19,7 @@ export const buttonVariants = cva(
         danger: ` bg-primary-red-400 text-white hover:(bg-primary-red-500)`,
       },
       size: {
-        primary: 'w-720rpx h-96rpx px-48rpx py-24rpx',
+        primary: 'w-full h-96rpx px-48rpx py-24rpx',
         small: 'w-320rpx h-72rpx px-24rpx py-12rpx',
       },
 
