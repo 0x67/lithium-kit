@@ -52,18 +52,19 @@ function handleFocus() {
         disabled && 'bg-primary-gray-50',
       )"
     >
+      <!-- TODO: Check why top-[1/2] suddenly stop working  -->
       <label
         :for="id"
         :class="cn(
-          'inset-x-24rpx',
+          'inset-x-24rpx pointer-events-none transform-gpu',
         )"
         transition="all duration-300 ease-in-out"
         pos="absolute"
-        :top="isFocused ? '36rpx' : '50%'"
+        :top="isFocused ? '16rpx' : '28rpx'"
         :text="isFocused ? 'caption-semibold primary-gray-600' : 'label-regular primary-gray-400'"
         translate-y="-50%"
       >
-        Label
+        {{ label }}
       </label>
 
       <input
@@ -72,17 +73,16 @@ function handleFocus() {
         :value="modelValue"
         :name="id"
         :class="cn(
-          'placeholder-transparent',
+          'placeholder-transparent transform-gpu',
           isFocused ? '' : 'rounded-md',
         )"
+        :h="isFocused ? '' : 'full'"
         :inset="isFocused ? 'x-24rpx' : 'x-0'"
-        :h="isFocused ? '48rp x' : '100%'"
         text="label-regular primary-raisin"
         transition="all duration-300 ease-in-out"
         position="absolute"
-        :bottom="isFocused ? '36rpx' : '50%'"
-        translate-y="50%"
-        :opacity="isFocused ? '100' : '0'"
+        :bottom="isFocused ? '16rpx' : ''"
+        :opacity="isFocused ? '100' : '50'"
         outline="none"
         :password="password"
         :disabled="disabled"
