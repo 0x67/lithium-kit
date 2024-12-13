@@ -4,7 +4,6 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  presetWind,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
@@ -33,9 +32,6 @@ export const lithiumContents: ConfigBase['content'] = {
 
 export const lithiumPresets: ConfigBase['presets'] = [
   presetUno({
-    attributifyPseudo: true,
-  }),
-  presetWind({
     attributifyPseudo: true,
   }),
   presetIcons(),
