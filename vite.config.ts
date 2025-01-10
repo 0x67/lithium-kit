@@ -64,6 +64,7 @@ export default defineConfig({
           'vue-router/auto': ['useLink'],
         },
       ],
+      packagePresets: ['@vueuse/motion'],
       dts: 'src/auto-imports.d.ts',
       dirs: [
         'src/composables/**',

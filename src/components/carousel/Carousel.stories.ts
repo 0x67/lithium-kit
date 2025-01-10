@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import UiCarousel from './UiCarousel.vue'
+import UiCarousel from './Carousel.vue'
 
 const meta = {
   title: 'UI/Carousel',
@@ -15,6 +15,7 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
+
 export const Carousel: Story = {
   args: {
     carousels: [

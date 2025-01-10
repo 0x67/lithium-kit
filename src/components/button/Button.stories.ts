@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import UiButton from './UiButton.vue'
-import type { ButtonVariants } from '@/components/button'
+import UiButton from './Button.vue'
+import type { ButtonVariants } from '.'
 
 const meta = {
   title: 'UI/Button',

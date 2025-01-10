@@ -1,11 +1,11 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 
-export { default as UiButton } from './UiButton.vue'
+export { default as UiButton } from './Button.vue'
 
 export const buttonVariants = cva(
   `center flex-grow-0 flex-shrink-0 whitespace-nowrap rounded-full
-   cursor-pointer border-0 transition duration-300 ease-in-out 
-  text-primary-raisin font-600 text-md line-height-md 
+   cursor-pointer border-0 transition duration-300 ease-in-out
+  text-primary-raisin font-600 text-md line-height-md
   disabled:(text-primary-gray-400 bg-primary-gray-50 cursor-not-allowed)
   `,
   {
