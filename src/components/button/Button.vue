@@ -7,9 +7,9 @@ import {
 } from '.'
 
 export interface IconProps {
-  // icon?: Icon
-  // iconSize?: number;
-  // placement?: 'left' | 'right'
+  icon?: string
+  iconSize?: number
+  placement?: 'left' | 'right'
 }
 
 interface ButtonProps {
@@ -26,7 +26,7 @@ interface ButtonProps {
   asChild?: boolean
 }
 
-withDefaults(defineProps<ButtonProps>(), {
+const props = withDefaults(defineProps<ButtonProps & IconProps>(), {
   disabled: false,
   type: 'button',
 })
@@ -43,16 +43,16 @@ withDefaults(defineProps<ButtonProps>(), {
     "
     @click="onClick"
   >
-    <!-- <view
+    <div
       v-if="props.icon && props.placement === 'left'"
       class="mr-24rpx"
       :class="props.icon"
-    /> -->
+    />
     {{ label }}
-    <!-- <view
+    <div
       v-if="props.icon && props.placement === 'right'"
       class="ml-8rpx"
       :class="props.icon"
-    /> -->
+    />
   </Primitive>
 </template>

@@ -70,6 +70,7 @@ export default defineConfig({
       dirs: [
         'src/composables/**',
         'src/utils/**',
+        'src/types/**',
       ],
       vueTemplate: true,
     }),

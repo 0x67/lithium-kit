@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import './header.css'
-import MyButton from './Button.vue'
 
 defineProps<{ user: { name: string } | null }>()
 
@@ -26,9 +25,9 @@ defineEmits<{
       </div>
       <div>
         <span v-if="user" class="welcome">Welcome, <b>{{ user.name }}</b>!</span>
-        <MyButton v-if="user" size="small" label="Log out" @click="$emit('logout')" />
+        <!-- <MyButton v-if="user" size="small" label="Log out" @click="$emit('logout')" />
         <MyButton v-if="!user" size="small" label="Log in" @click="$emit('login')" />
-        <MyButton v-if="!user" primary size="small" label="Sign up" @click="$emit('createAccount')" />
+        <MyButton v-if="!user" primary size="small" label="Sign up" @click="$emit('createAccount')" /> -->
       </div>
     </div>
   </header>

@@ -33,11 +33,11 @@ withDefaults(defineProps<{
         :key="idx"
         class="flex flex-col"
       >
-        <view>
-          <view class="center p-32rpx">
+        <div>
+          <div class="center p-32rpx">
             <img v-if="carousel.img" :src="carousel.img" class="h-400rpx w-640rpx">
-          </view>
-          <view class="flex flex-col p32rpx">
+          </div>
+          <div class="flex flex-col p32rpx">
             <span class="text-title-lg text-primary-raisin">{{ carousel.title }}</span>
             <span
               v-if="carousel.description"
@@ -45,8 +45,8 @@ withDefaults(defineProps<{
             >
               {{ carousel.description }}
             </span>
-          </view>
-        </view>
+          </div>
+        </div>
       </CarouselItem>
     </CarouselContent>
     <CarouselDotButtons class="py-16rpx" />
