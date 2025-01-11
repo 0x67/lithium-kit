@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import {
   type ConfigBase,
   presetAttributify,
@@ -7,17 +8,50 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-// import { createLocalFontProcessor } from 'unocss/preset-web-fonts/src/processor'
+
 import {
   presetApplet,
   presetRemRpx,
 } from 'unocss-applet'
 import { presetAnimations } from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
+import { deOptimisePaths, importDirectory, parseColors, runSVGO } from '@iconify/tools'
 
-// // eslint-disable-next-line ts/ban-ts-comment
-// // @ts-ignore
-// import presetTailwindMotion from 'unocss-preset-tailwindcss-motion'
+/**
+ * Load custom icon set
+ * @ref https://github.com/iconify/tools/blob/42a6b8c53a30626b6857efe977a36eb5f336e6d7/%40iconify-demo/unocss/unocss.config.ts#L15
+ */
+async function loadCustomIconSet(dir: string) {
+  // Load icon set
+  const iconSet = await importDirectory(dir, {
+    prefix: 'allo',
+    ignoreImportErrors: 'warn',
+  })
+
+  // Parse all icons: optimise, clean up palette
+  iconSet.forEachSync((name) => {
+    const svg = iconSet.toSVG(name)!
+
+    parseColors(svg, {
+      defaultColor: 'currentColor',
+      callback: () => {
+        return 'currentColor'
+      },
+    })
+
+    // Optimise
+    runSVGO(svg)
+
+    // Update paths for compatibility with old software
+    deOptimisePaths(svg)
+
+    // Update icon in icon set
+    iconSet.fromSVG(name, svg)
+  })
+
+  // Return as function
+  return () => iconSet.export()
+}
 
 export const lithiumContents: ConfigBase['content'] = {
   pipeline: {
@@ -30,11 +64,22 @@ export const lithiumContents: ConfigBase['content'] = {
   },
 }
 
+const path = resolve(__dirname, '../../src/assets/icons')
+
 export const lithiumPresets: ConfigBase['presets'] = [
   presetUno({
     attributifyPseudo: true,
   }),
-  presetIcons(),
+  presetIcons({
+    warn: true,
+    extraProperties: {
+      'display': 'inline-block',
+      'vertical-align': 'middle',
+    },
+    collections: {
+      nuxtflix: await loadCustomIconSet(path),
+    },
+  }),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
   presetApplet(),

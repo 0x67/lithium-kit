@@ -17,6 +17,7 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import ViteRestart from 'vite-plugin-restart'
+import Iconify from 'unplugin-iconify-generator/vite'
 
 const fullReloadAlways: PluginOption = {
   name: 'full-reload-always',
@@ -85,6 +86,11 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     Unocss(),
+    Iconify({
+      collections: {
+        allo: './src/assets/icons',
+      },
+    }),
 
     // https://github.com/unplugin/unplugin-vue-markdown
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
