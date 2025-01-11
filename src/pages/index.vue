@@ -1,10 +1,15 @@
 <script setup lang="ts">
-const input = ref('')
+import { UiButton } from '@/components/button'
+import { UiSwitch } from '@/components/ui/switch'
+
+const checked = ref(false)
+const disabled = ref(false)
 </script>
 
 <template>
-  <div class="">
-    <ui-input id="asdada" v-model="input" />
+  <div class="h-screen">
+    <UiButton label="TEst" />
+    <UiSwitch v-model:checked="checked" :disabled="disabled" />
   </div>
 </template>
 

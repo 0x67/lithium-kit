@@ -46,6 +46,6 @@
     "yaml"
   ],
   "iconify.customCollectionJsonPaths": [
-    "node_modules/.unplugin-iconify-generator/nuxtflix.json"
+    "node_modules/.unplugin-iconify-generator/allo.json"
   ]
 }

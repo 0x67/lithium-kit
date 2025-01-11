@@ -10,7 +10,6 @@ import {
 } from 'unocss'
 
 import {
-  presetApplet,
   presetRemRpx,
 } from 'unocss-applet'
 import { presetAnimations } from 'unocss-preset-animations'
@@ -82,7 +81,7 @@ export const lithiumPresets: ConfigBase['presets'] = [
   }),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
-  presetApplet(),
+  // presetApplet(),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
   presetRemRpx({
