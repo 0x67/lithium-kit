@@ -1,8 +1,6 @@
-import { resolve } from 'node:path'
 import {
   type ConfigBase,
   presetAttributify,
-  presetIcons,
   presetTypography,
   presetUno,
   transformerDirectives,
@@ -14,43 +12,6 @@ import {
 } from 'unocss-applet'
 import { presetAnimations } from 'unocss-preset-animations'
 import { presetShadcn } from 'unocss-preset-shadcn'
-import { deOptimisePaths, importDirectory, parseColors, runSVGO } from '@iconify/tools'
-
-/**
- * Load custom icon set
- * @ref https://github.com/iconify/tools/blob/42a6b8c53a30626b6857efe977a36eb5f336e6d7/%40iconify-demo/unocss/unocss.config.ts#L15
- */
-async function loadCustomIconSet(dir: string) {
-  // Load icon set
-  const iconSet = await importDirectory(dir, {
-    prefix: 'allo',
-    ignoreImportErrors: 'warn',
-  })
-
-  // Parse all icons: optimise, clean up palette
-  iconSet.forEachSync((name) => {
-    const svg = iconSet.toSVG(name)!
-
-    parseColors(svg, {
-      defaultColor: 'currentColor',
-      callback: () => {
-        return 'currentColor'
-      },
-    })
-
-    // Optimise
-    runSVGO(svg)
-
-    // Update paths for compatibility with old software
-    deOptimisePaths(svg)
-
-    // Update icon in icon set
-    iconSet.fromSVG(name, svg)
-  })
-
-  // Return as function
-  return () => iconSet.export()
-}
 
 export const lithiumContents: ConfigBase['content'] = {
   pipeline: {
@@ -62,22 +23,9 @@ export const lithiumContents: ConfigBase['content'] = {
     ],
   },
 }
-
-const path = resolve(__dirname, '../../src/assets/icons')
-
 export const lithiumPresets: ConfigBase['presets'] = [
   presetUno({
     attributifyPseudo: true,
-  }),
-  presetIcons({
-    warn: true,
-    extraProperties: {
-      'display': 'inline-block',
-      'vertical-align': 'middle',
-    },
-    collections: {
-      nuxtflix: await loadCustomIconSet(path),
-    },
   }),
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore
@@ -319,6 +267,46 @@ export const lithiumRules: ConfigBase['rules'] = [
     'lining-tabular-nums',
     { 'font-variant-numeric': 'lining-nums tabular-nums' },
   ],
+  [
+    /^(icon-(?:fill|stroke))-(.*)$/,
+    ([_, type, c], { theme }) => {
+      const colors = (theme as Record<string, any>).colors
+
+      // Helper function to resolve nested keys
+      const resolveColor = (color: string) => {
+        const parts = color.split('-')
+        let current = colors
+
+        for (const part of parts) {
+          if (!current[part]) {
+            return null
+          }
+          current = current[part]
+        }
+
+        if (typeof current === 'object' && 'DEFAULT' in current) {
+          return current.DEFAULT
+        }
+
+        return current
+      }
+
+      // Resolve the color
+      const resolvedColor = resolveColor(c)
+
+      if (resolvedColor) {
+        const variable = type === 'icon-fill' ? '--icon-fill' : '--icon-stroke'
+        const res = {
+          [variable]: resolvedColor,
+        }
+
+        return res
+      }
+    },
+    {
+      autocomplete: ['icon-fill-$colors', 'icon-stroke-$colors'],
+    },
+  ],
 ]
 
 export const lithiumConfig: ConfigBase = {
@@ -329,4 +317,5 @@ export const lithiumConfig: ConfigBase = {
   shortcuts: lithiumShortcuts,
   transformers: lithiumTransformers,
   rules: lithiumRules,
+
 }

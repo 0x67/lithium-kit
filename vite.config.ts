@@ -18,6 +18,40 @@ import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import ViteRestart from 'vite-plugin-restart'
 import Iconify from 'unplugin-iconify-generator/vite'
+import Icons from 'unplugin-icons/vite'
+import IconResolver from 'unplugin-icons/resolver'
+import { deOptimisePaths, importDirectory, removeFigmaClipPathFromSVG, runSVGO } from '@iconify/tools'
+
+/**
+ * Load custom icon set
+ * @ref https://github.com/iconify/tools/blob/42a6b8c53a30626b6857efe977a36eb5f336e6d7/%40iconify-demo/unocss/unocss.config.ts#L15
+ */
+async function loadCustomIconSet(dir: string) {
+  // Load icon set
+  const iconSet = await importDirectory(dir, {
+    prefix: 'allo',
+    ignoreImportErrors: 'warn',
+  })
+
+  iconSet.forEachSync((name) => {
+    const svg = iconSet.toSVG(name)!
+
+    // Optimise
+    runSVGO(svg)
+
+    // Update paths for compatibility with old software
+    deOptimisePaths(svg)
+
+    // Remove clip-path from Figma
+    removeFigmaClipPathFromSVG(svg)
+
+    // Update icon in icon set
+    iconSet.fromSVG(name, svg)
+  })
+
+  // Return as function
+  return () => iconSet.export()
+}
 
 const fullReloadAlways: PluginOption = {
   name: 'full-reload-always',
@@ -82,6 +116,13 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      resolvers: [
+        IconResolver({
+          customCollections: [
+            'allo',
+          ],
+        }),
+      ],
     }),
 
     // https://github.com/antfu/unocss
@@ -90,6 +131,14 @@ export default defineConfig({
     Iconify({
       collections: {
         allo: './src/assets/icons',
+      },
+    }),
+    Icons({
+      compiler: 'vue3',
+      customCollections: {
+        // eslint-disable-next-line ts/ban-ts-comment
+        // @ts-ignore
+        allo: await loadCustomIconSet('./src/assets/icons'),
       },
     }),
 
@@ -151,7 +200,12 @@ export default defineConfig({
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     VueDevTools(),
     ViteRestart({
-      restart: ['vite.config.ts', 'uno.config.ts'],
+      restart: [
+        'vite.config.ts',
+        'uno.config.ts',
+        './src/assets/icons/**/*.svg',
+        './src/config/unocss.ts',
+      ],
     }),
     fullReloadAlways,
   ],
