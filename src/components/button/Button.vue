@@ -8,7 +8,7 @@ import {
 
 export interface IconProps {
   icon?: string
-  iconSize?: number
+  // iconSize?: number
   placement?: 'left' | 'right'
 }
 
