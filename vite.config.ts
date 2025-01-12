@@ -20,7 +20,15 @@ import ViteRestart from 'vite-plugin-restart'
 import Iconify from 'unplugin-iconify-generator/vite'
 import Icons from 'unplugin-icons/vite'
 import IconResolver from 'unplugin-icons/resolver'
-import { deOptimisePaths, importDirectory, removeFigmaClipPathFromSVG, runSVGO } from '@iconify/tools'
+import {
+  cleanupInlineStyle,
+  cleanupSVG,
+  deOptimisePaths,
+  importDirectory,
+  parseColors,
+  removeFigmaClipPathFromSVG,
+  runSVGO,
+} from '@iconify/tools'
 
 /**
  * Load custom icon set
@@ -35,6 +43,34 @@ async function loadCustomIconSet(dir: string) {
 
   iconSet.forEachSync((name) => {
     const svg = iconSet.toSVG(name)!
+
+    cleanupInlineStyle(svg)
+    cleanupSVG(svg)
+
+    parseColors(svg, {
+      callback: (attributes, color, parsedColor) => {
+        // supports for duo-tone icons
+        switch (attributes) {
+          case 'fill':
+          case 'stroke':
+            switch (parsedColor?.type) {
+              case 'none':
+                return 'none'
+              case 'transparent':
+                return 'transparent'
+              default:
+                if (attributes === 'fill') {
+                  return 'var(--icon-fill, transparent)'
+                }
+
+                return 'var(--icon-stroke, currentColor)'
+            }
+
+          default:
+            return color
+        }
+      },
+    })
 
     // Optimise
     runSVGO(svg)
@@ -99,7 +135,7 @@ export default defineConfig({
           'vue-router/auto': ['useLink'],
         },
       ],
-      packagePresets: ['@vueuse/motion'],
+      packagePresets: ['@vueuse/motion', '@vueuse/components'],
       dts: 'src/auto-imports.d.ts',
       dirs: [
         'src/composables/**',
@@ -107,6 +143,7 @@ export default defineConfig({
         'src/types/**',
       ],
       vueTemplate: true,
+      viteOptimizeDeps: true,
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -114,7 +151,7 @@ export default defineConfig({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
       // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/, /\.ts$/],
       dts: 'src/components.d.ts',
       resolvers: [
         IconResolver({
