@@ -276,19 +276,35 @@ export const lithiumRules: ConfigBase['rules'] = [
       const resolveColor = (color: string) => {
         const parts = color.split('-')
         let current = colors
+        let lastValidValue: any = null // Track the last valid color value
 
         for (const part of parts) {
           if (!current[part]) {
-            return null
+            break // Stop if the key doesn't exist
           }
           current = current[part]
+          lastValidValue = current // Update the last valid value
         }
 
-        if (typeof current === 'object' && 'DEFAULT' in current) {
-          return current.DEFAULT
+        // If the final resolved value is an object
+        if (typeof current === 'object') {
+          if ('DEFAULT' in current) {
+            return current.DEFAULT // Return DEFAULT if available
+          }
+
+          // Get the nearest (lowest) numeric key if DEFAULT doesn't exist
+          const numericKeys = Object.keys(current)
+            .filter(key => !Number.isNaN(Number(key))) // Filter numeric keys
+            .map(Number) // Convert to numbers
+            .sort((a, b) => a - b) // Sort numerically
+
+          if (numericKeys.length > 0) {
+            return current[numericKeys[0]] // Return the value for the lowest key
+          }
         }
 
-        return current
+        // If current is a string, return it; otherwise, fallback to last valid value'
+        return typeof current === 'string' ? current : lastValidValue
       }
 
       // Resolve the color
