@@ -8,12 +8,17 @@
   // Disable the default formatter
   "prettier.enable": false,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file", // required to format on save
 
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "always",
     "source.organizeImports": "never"
+    // "source.fixAll.oxc": "always"
+    // "source.sortImports": "always"
   },
+  // "oxc.enable": true,
+  // "oxc.lint.run": "onSave",
 
   // Silent the stylistic rules in you IDE, but still auto fix them
   "eslint.rules.customizations": [
@@ -43,7 +48,8 @@
     "markdown",
     "json",
     "jsonc",
-    "yaml"
+    "yaml",
+    "css"
   ],
   "iconify.customCollectionJsonPaths": [
     "node_modules/.unplugin-iconify-generator/allo.json"

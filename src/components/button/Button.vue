@@ -4,7 +4,7 @@ import { Primitive } from 'radix-vue'
 import {
   type ButtonVariants,
   buttonVariants,
-} from '.'
+} from './variants'
 
 export interface IconProps {
   icon?: string

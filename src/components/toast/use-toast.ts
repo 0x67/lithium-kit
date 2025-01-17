@@ -1,5 +1,4 @@
-import type { Component, VNode } from 'vue'
-import { computed, ref } from 'vue'
+import { type Component, type VNode, computed, ref } from 'vue'
 import type { ToastProps } from '.'
 
 const TOAST_LIMIT = 1
@@ -119,6 +118,9 @@ function dispatch(action: Action) {
       else
         state.value.toasts = state.value.toasts.filter(t => t.id !== action.toastId)
 
+      break
+
+    default:
       break
   }
 }

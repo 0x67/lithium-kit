@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ToastDescription, type ToastDescriptionProps } from 'radix-vue'
+import { Primitive, type ToastDescriptionProps } from 'radix-vue'
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<ToastDescriptionProps & { class?: HTMLAttributes['class'] }>()
@@ -12,7 +12,10 @@ const delegatedProps = computed(() => {
 </script>
 
 <template>
-  <ToastDescription :class="cn('text-label-regular text-white max-w-560rpx h-48rpx truncate', props.class)" v-bind="delegatedProps">
+  <Primitive
+    :class="cn('text-label-regular text-white max-w-560rpx h-48rpx truncate', props.class)"
+    v-bind="delegatedProps"
+  >
     <slot />
-  </ToastDescription>
+  </Primitive>
 </template>

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { Component } from 'vue'
-import { isVNode } from 'vue'
+import { type Component, isVNode } from 'vue'
 import type { StringOrVNode } from './use-toast'
 import type { ToastProps } from '.'
 import IAlloInfo from '~icons/allo/info'

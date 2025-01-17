@@ -1,0 +1,62 @@
+{
+  "$schema": "https://oxc-project.github.io/schemas/oxc.json",
+  "plugins": ["import", "typescript", "unicorn", "promise"],
+  "env": {
+    "esnext": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "ignores": [
+    "./node_modules/**/*",
+    "./dist/**/*",
+    "./docs/**/*",
+    "./coverage/**/*",
+    "./.next/**/*",
+    "./storybook/**/*",
+    "./storybook-static/**/*"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
+  },
+  "rules": {
+    "eqeqeq": "error",
+    "no-duplicate-imports": "error",
+    "no-empty-pattern": "error",
+    "no-fallthrough": "error",
+    "no-promise-executor-return": "error",
+    "no-self-compare": "error",
+    "no-template-curly-in-string": "error",
+    "no-undef": "off",
+    "no-unreachable": "error",
+    "no-unused-vars": ["error", {
+      "varsIgnorePattern": "^_",
+      "argsIgnorePattern": "^_",
+      "ignoreRestSiblings": true
+    }],
+    "camelcase": "off",
+    "default-case": "error",
+    "guard-for-in": "error",
+    "no-alert": "error",
+    "no-eval": "error",
+    "import/no-cycle": "error",
+    "import/order": ["error", {
+      "newlines-between": "always",
+      "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+      "alphabetize": {
+        "order": "asc",
+        "caseInsensitive": true
+      }
+    }],
+    "unicorn/no-useless-fallback-in-spread": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "no-constant-binary-expression": "off",
+    "unicorn/no-empty-file": "off",
+    "unicorn/no-useless-spread": "off",
+    "unicorn/no-single-promise-in-promise-methods": "off",
+    "react/jsx-key": "off"
+  }
+}

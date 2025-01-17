@@ -1,12 +1,13 @@
-import { ViteSSG } from 'vite-ssg'
-import { setupLayouts } from 'virtual:generated-layouts'
-import { routes } from 'vue-router/auto-routes'
-import { MotionPlugin } from '@vueuse/motion'
-import App from './App.vue'
-import type { UserModule } from './types'
 import '@unocss/reset/tailwind.css'
+import { MotionPlugin } from '@vueuse/motion'
 import 'uno.css'
+import { setupLayouts } from 'virtual:generated-layouts'
+import { ViteSSG } from 'vite-ssg'
+import { routes } from 'vue-router/auto-routes'
+import App from './App.vue'
+
 import './styles/main.css'
+import type { UserModule } from './types'
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(
