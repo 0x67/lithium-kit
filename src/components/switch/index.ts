@@ -1,1 +1,1 @@
-export { default as UiSwitch } from './Switch.vue'
+export { default as UiSwitch } from './UiSwitch.vue'

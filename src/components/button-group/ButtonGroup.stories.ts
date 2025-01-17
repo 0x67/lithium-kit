@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import UIButtonGroup from './ButtonGroup.vue'
-import UiButton from '@/components/button/Button.vue'
+import UiButtonGroup from './UiButtonGroup.vue'
+import { UiButton } from '@/components/button'
 
 const meta = {
   title: 'UI/ButtonGroup',
-  component: UIButtonGroup,
+  component: UiButtonGroup,
   tags: ['autodocs'],
 
-} satisfies Meta<typeof UIButtonGroup>
+} satisfies Meta<typeof UiButtonGroup>
 
 export default meta
 
@@ -17,15 +17,15 @@ export const ButtonGroup: Story = {
   args: {
   },
   render: () => ({
-    components: { UIButtonGroup, UiButton },
+    components: { UiButtonGroup, UiButton },
     setup() {
     },
     template: `
-      <UIButtonGroup>
+      <UiButtonGroup>
         <UiButton variant="primary" size="primary" label="Button 1"/>
         <UiButton variant="secondary" size="primary" label="Button 2"/>
         <UiButton variant="danger" size="primary" label="Button 3"/>
-      </UIButtonGroup>
+      </UiButtonGroup>
     `,
   }),
 }

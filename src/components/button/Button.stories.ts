@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import UiButton from './Button.vue'
+import UiButton from './UiButton.vue'
 import type { ButtonVariants } from '.'
 
 const meta = {

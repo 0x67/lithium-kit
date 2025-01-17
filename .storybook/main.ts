@@ -9,6 +9,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     'storybook-addon-rem-v8',
     '@storybook/addon-a11y',
+    '@storybook/addon-mdx-gfm',
   ],
   staticDirs: ['../public'],
   framework: {
@@ -19,5 +20,10 @@ const config: StorybookConfig = {
     check: true,
   },
   docs: {},
+  async viteFinal(config) {
+    return {
+      ...config,
+    }
+  },
 }
 export default config

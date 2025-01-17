@@ -1,1 +1,1 @@
-export { default as UiButtonGroup } from './ButtonGroup.vue'
+export { default as UiButtonGroup } from './UiButtonGroup.vue'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { UiButton } from '@/components/button'
-import { UiSwitch } from '@/components/ui/switch'
+import { UiSwitch } from '@/components/switch'
 
 const checked = ref(false)
 const disabled = ref(false)

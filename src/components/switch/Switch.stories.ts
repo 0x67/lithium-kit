@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import UISwitch from './Switch.vue'
+import UiSwitch from './UiSwitch.vue'
 
 const meta = {
   title: 'UI/Switch',
-  component: UISwitch,
+  component: UiSwitch,
   tags: ['autodocs'],
   argTypes: {
   },
@@ -11,7 +11,7 @@ const meta = {
     checked: false,
     disabled: false,
   },
-} satisfies Meta<typeof UISwitch>
+} satisfies Meta<typeof UiSwitch>
 
 export default meta
 
@@ -23,12 +23,12 @@ export const Switch: Story = {
     // disabled: false,
   },
   render: args => ({
-    components: { UISwitch },
+    components: { UiSwitch },
     setup() {
-      const checked = ref(args.checked)
-      const disabled = ref(args.disabled)
+      const checked = ref(true)
+      const disabled = ref(true)
       return { args, checked, disabled }
     },
-    template: '<UISwitch v-model:checked="args.checked" v-model:disabled="args.disabled"/>',
+    template: '<UiSwitch v-model:checked="args.checked" v-model:disabled="args.disabled"/>',
   }),
 }
