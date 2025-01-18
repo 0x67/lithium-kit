@@ -130,6 +130,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "oxlint --fix"
+    "*": "eslint --fix "
   }
 }

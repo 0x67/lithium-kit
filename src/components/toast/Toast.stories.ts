@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import ToastProvider from './ToastProvider.vue'
-import UiToast from './Toast.vue'
-import ToastContent from './ToastContent.vue'
+import UiToastContent from './UiToastContent.vue'
+import ToastViewport from '@/components/toast/ToastViewport.vue'
 
 const meta = {
   title: 'UI/Toast',
@@ -23,7 +23,7 @@ export const Toast: Story = {
     // disabled: false,
   },
   render: () => ({
-    components: { ToastProvider, UiToast, ToastContent },
+    components: { ToastProvider, UiToastContent, ToastViewport },
     setup() {
       const toast = ref({
         title: 'Hello',
@@ -34,11 +34,10 @@ export const Toast: Story = {
       }
     },
     template: `
-    <ToastProvider>
-      <UiToast>
-        <ToastContent :toast="toast" />
-      </UiToast>
-    </ToastProvider>
+      <ToastProvider>
+        <UiToastContent v-bind="toast" />
+        <ToastViewport />
+      </ToastProvider>
     `,
   }),
 }

@@ -4,7 +4,7 @@ import {
   cleanupSVG,
   deOptimisePaths,
   importDirectory,
-  parseColors,
+  // parseColors,
   removeFigmaClipPathFromSVG,
   runSVGO,
 } from '@iconify/tools'
@@ -21,7 +21,7 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
-import { type PluginOption, type UserConfig, defineConfig, loadEnv } from 'vite'
+import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import ViteRestart from 'vite-plugin-restart'
 import VueDevTools from 'vite-plugin-vue-devtools'
@@ -46,30 +46,30 @@ async function loadCustomIconSet(dir: string) {
     cleanupInlineStyle(svg)
     cleanupSVG(svg)
 
-    parseColors(svg, {
-      callback: (attributes, color, parsedColor) => {
-        // supports for duo-tone icons
-        switch (attributes) {
-          case 'fill':
-          case 'stroke':
-            switch (parsedColor?.type) {
-              case 'none':
-                return 'none'
-              case 'transparent':
-                return 'transparent'
-              default:
-                if (attributes === 'fill') {
-                  return 'var(--icon-fill, transparent)'
-                }
+    // parseColors(svg, {
+    //   callback: (attributes, color, parsedColor) => {
+    //     // supports for duo-tone icons
+    //     switch (attributes) {
+    //       case 'fill':
+    //       case 'stroke':
+    //         switch (parsedColor?.type) {
+    //           case 'none':
+    //             return 'none'
+    //           case 'transparent':
+    //             return 'transparent'
+    //           default:
+    //             if (attributes === 'fill') {
+    //               return 'var(--icon-fill, transparent)'
+    //             }
 
-                return 'var(--icon-stroke, currentColor)'
-            }
+    //             return 'var(--icon-stroke, currentColor)'
+    //         }
 
-          default:
-            return color
-        }
-      },
-    })
+    //       default:
+    //         return color
+    //     }
+    //   },
+    // })
 
     // Optimise
     runSVGO(svg)
@@ -96,8 +96,8 @@ const fullReloadAlways: PluginOption = {
   },
 } as PluginOption
 
-export default defineConfig(async ({ mode }): Promise<UserConfig> => {
-  const env = loadEnv(mode, '.')
+export default defineConfig(async (): Promise<UserConfig> => {
+  // const env = loadEnv(mode, '.')
 
   return {
     resolve: {
@@ -205,7 +205,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
       }),
 
       // https://github.com/antfu/vite-plugin-pwa
-      env.VITE_MODE !== 'storybook' && VitePWA({
+      VitePWA({
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
         manifest: {
@@ -232,7 +232,6 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => {
           ],
         },
       }),
-
       // https://github.com/feat-agency/vite-plugin-webfont-dl
       WebfontDownload(),
 

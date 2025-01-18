@@ -16,6 +16,7 @@ const delegatedProps = computed(() => {
     :class="cn('text-label-regular text-white max-w-560rpx h-48rpx truncate', props.class)"
     v-bind="delegatedProps"
   >
+    {{ props.class }}
     <slot />
   </Primitive>
 </template>
